@@ -2,29 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_state_compare/getx/mvc/controller/result_controller.dart';
 import 'package:get/get.dart';
 
-class ResultScreen extends StatefulWidget {
-  const ResultScreen({Key? key}) : super(key: key);
-
-  @override
-  State<ResultScreen> createState() => _ResultScreenState();
-}
-
-class _ResultScreenState extends State<ResultScreen> with SingleTickerProviderStateMixin{
-  late TabController _tabController;
-  final controller = Get.find<ResultController>();
-
-  @override
-  void initState() {
-    super.initState();
-    // TabController(length: , vsync: this);
-  }
+class ResultScreen extends GetView<ResultController> {
+  const ResultScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-
     RxList<String> tabData = controller.getTabList();
-
 
     return DefaultTabController(
       initialIndex: 0,
@@ -33,6 +16,7 @@ class _ResultScreenState extends State<ResultScreen> with SingleTickerProviderSt
         appBar: AppBar(
           title: const Text('MVC Demo'),
           bottom: TabBar(
+            controller: controller.tabController,
             tabs: List.generate(
               tabData.length,
               (index) => Tab(
@@ -43,6 +27,7 @@ class _ResultScreenState extends State<ResultScreen> with SingleTickerProviderSt
           ),
         ),
         body: TabBarView(
+          controller: controller.tabController,
           children: List.generate(tabData.length, (index) => CustomTabBarList(index)),
         ),
       ),
