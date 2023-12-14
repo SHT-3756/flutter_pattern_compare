@@ -7,11 +7,6 @@ class ResultRepositoryImpl implements ResultRepository {
 
   ResultRepositoryImpl(this.fb);
 
-  // @override
-  // Future<Result?> getResultId(int id) async {
-  //   return await fb.getResultId(id);
-  // }
-
   @override
   Future<List<Result>> getResults() async {
     return await fb.getResults();
