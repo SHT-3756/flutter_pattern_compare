@@ -5,6 +5,5 @@ abstract class ResultRepository {
   Future<List<Result>> getResults();
 
   // 해당되는 결과 페이지 가져오기
-  Future<Result> getResultId(int id);
-
+  // Future<Result?> getResultId(int id);
 }
