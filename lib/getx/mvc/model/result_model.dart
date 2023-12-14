@@ -27,8 +27,6 @@ class ResultModel {
 
   }
 
-  void getTabList() => tabList;
-
   void setCurrentIndex(RxDouble newValue) {
     currentIndex = newValue;
     tabList[newValue.value.toInt()];
