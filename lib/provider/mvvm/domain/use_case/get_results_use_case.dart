@@ -3,13 +3,12 @@ import 'package:flutter_state_compare/provider/mvvm/domain/repository/result_rep
 import '../model/result_model.dart';
 
 class GetResultsUseCase {
-    final ResultRepository repository;
+  final ResultRepository repository;
 
-    GetResultsUseCase(this.repository);
+  GetResultsUseCase(this.repository);
 
-    // Future<List<Result>> call() async {
-    //   List<Result> results = await repository.getResults();
-    //
-    // }
-
+  Future<List<Result>> call() async {
+    List<Result> results = await repository.getResults();
+    return results;
+  }
 }
