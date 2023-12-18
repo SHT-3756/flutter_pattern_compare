@@ -6,14 +6,6 @@ class ResultApiHelper {
 
   ResultApiHelper(this.api);
 
-  // id 별 result 가져오기
-  // Future<Result?> getResultId(int id) async {
-  //   final Iterable? res = await api.get('result$id.json'); // filter 든 orderby , where 건다.
-  //   if(res == null) return null;
-  //   Map<String, dynamic> convertToRes = toMap(res);
-  //   return Result.fromJson(convertToRes);
-  // }
-
   // result 리스트 가져오기
   Future<List<Result>> getResults() async {
     final Iterable? res = await api.get('result.json');
