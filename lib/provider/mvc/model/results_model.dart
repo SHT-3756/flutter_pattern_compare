@@ -1,15 +1,34 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:http/http.dart' as http;
 
 part 'results_model.g.dart';
 
 @JsonSerializable()
 class Results extends ChangeNotifier {
-  final List<Result> result;
+  List<Result> result;
 
-  Results({required this.result});
+  Results({required this.result}) {
+    _fetchData();
+  }
 
-  factory Results.fromJson(Map<String, dynamic> json) => _$ResultsFromJson(json);
+  Future _fetchData() async {
+    try {
+      final tempRes = await http.get(Uri.parse(
+          'https://gist.githubusercontent.com/SHT-3756/96ec182264c7ae0c531691da5a994a08/raw/bf5c0aa9154abfe4c742349914e1d6fd30d7791c/result.json'));
+      Map<String, dynamic> jsonResponse = jsonDecode(tempRes.body);
+      Iterable data = jsonResponse['data'];
+      result = data.map((e) => Result.fromJson(e)).toList();
+      notifyListeners();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  factory Results.fromJson(Map<String, dynamic> json) =>
+      _$ResultsFromJson(json);
 
   Results copyWith({
     List<Result>? result,
