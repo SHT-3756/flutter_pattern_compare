@@ -1,9 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'result_model.g.dart';
+part 'results_model.g.dart';
 
 @JsonSerializable()
-class Result {
+class Results extends ChangeNotifier {
+  final List<Result> result;
+
+  Results({required this.result});
+
+  factory Results.fromJson(Map<String, dynamic> json) => _$ResultsFromJson(json);
+
+  Results copyWith({
+    List<Result>? result,
+  }) {
+    return Results(result: result ?? this.result);
+  }
+}
+
+@JsonSerializable()
+class Result extends ChangeNotifier {
   final String productImage;
   final String title;
   final int applyCount;
@@ -45,4 +61,3 @@ class Result {
     return '$productImage, $title, $applyCount, $winCount, $status, $dateString';
   }
 }
-

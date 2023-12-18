@@ -1,39 +1,22 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_state_compare/provider//mvc/controller/result_controller.dart';
-import 'package:flutter_state_compare/provider/mvvm/data/data_source/api.dart';
-import 'package:flutter_state_compare/provider/mvvm/data/data_source/result_api_helper.dart';
+import 'package:flutter_state_compare/provider/mvc/model/results_model.dart';
+import 'package:flutter_state_compare/provider/mvvm/di/provider_setup.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_state_compare/provider/mvc/view/result/result_screen.dart';
 
-import 'di/provider_setup.dart';
+import 'package:http/http.dart' as http;
 
-// void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   Api api = Api();
-//   ResultApiHelper resultApiHelper = ResultApiHelper(api);
-//
-//
-//   runApp(MyApp(resultApiHelper));
-// }
-//
-// class MyApp extends StatelessWidget {
-//   ResultApiHelper resultApiHelper;
-//   MyApp(this.resultApiHelper, {Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//
-//     return  MaterialApp(
-//       title: 'MVC Demo',
-//       home: ChangeNotifierProvider<ResultController>(
-//         create: (context) => ResultController(resultApiHelper) ,
-//           child: ResultScreen()),
-//     );
-//   }
-// }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final providers = await getProviders();
 
-void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: providers,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -41,15 +24,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // WidgetsFlutterBinding.ensureInitialized();
-    Api api = Api();
-    ResultApiHelper resultApiHelper = ResultApiHelper(api);
+    return const MaterialApp(
+      title: 'MVC',
+      home: TestScreen(),
+    );
+  }
+}
 
-    return MaterialApp(
-      home: ChangeNotifierProvider<ResultProvider>(
-        create: (context) => ResultProvider(resultApiHelper),
-        child: const ResultScreen(),
+class TestScreen extends StatelessWidget {
+  const TestScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Results _model = Results(result: []);
+    return ChangeNotifierProvider<Results>(
+      create: (_) => _model,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('MVC-Provider1'),
+        ),
+        body: ListView(
+          children: [],
+        ),
       ),
     );
   }
 }
+
