@@ -20,10 +20,8 @@ class ResultController extends GetxController with GetSingleTickerProviderStateM
   @override
   void onInit() {
     super.onInit();
-    // 워커 등록 ever, once, debounce, interval
-    // ever(_tabController.index , (callback) => null)
-    _tabController = TabController(length: tabList.length, vsync: this);
 
+    _tabController = TabController(length: tabList.length, vsync: this);
 
     _tabController.addListener(() {
       var position = _tabController.index + _tabController.offset;

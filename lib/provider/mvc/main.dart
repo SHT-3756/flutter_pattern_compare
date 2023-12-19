@@ -1,53 +1,56 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_state_compare/provider/mvc/model/results_model.dart';
-import 'package:flutter_state_compare/provider/mvvm/di/provider_setup.dart';
 import 'package:provider/provider.dart';
 
-import 'package:http/http.dart' as http;
+import 'model/test_model.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final providers = await getProviders();
-
-  runApp(
-    MultiProvider(
-      providers: providers,
-      child: const MyApp(),
-    ),
-  );
+void main() {
+  runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'MVC',
-      home: TestScreen(),
+    return MaterialApp(
+      title: 'Test',
+      home: ChangeNotifierProvider(
+        create: (_) => TestModel(),
+        child: const TestScreen(),
+      ),
     );
   }
 }
-
-class TestScreen extends StatelessWidget {
+class TestScreen extends StatefulWidget {
   const TestScreen({Key? key}) : super(key: key);
 
   @override
+  State<TestScreen> createState() => _TestScreenState();
+}
+
+class _TestScreenState extends State<TestScreen> {
+  final TestModel _model = TestModel();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _model.setData();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Results _model = Results(result: []);
-    return ChangeNotifierProvider<Results>(
+    return ChangeNotifierProvider<TestModel>(
       create: (_) => _model,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('MVC-Provider1'),
+          title: Text('제발'),
         ),
         body: ListView(
-          children: [],
+          children: [
+            ..._model.result.map((e) => Text(e.title))
+          ],
         ),
       ),
     );
   }
 }
-
