@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_state_compare/riverpod/example/common/utils/logger.dart';
-import 'package:flutter_state_compare/riverpod/mvvm/domian/riverpod/app_provider.dart';
-import 'package:flutter_state_compare/riverpod/mvvm/presentation/app/app_screen.dart';
+import 'package:flutter_state_compare/riverpod/mvc/presentation/app/app_screen.dart';
 
-import 'di/riverpod_setup.dart';
+import 'domian/riverpod/app_provider.dart';
 
 void main() {
   runApp(
     ProviderScope(
       overrides: [
-        // Provider(
-        //   (ref) => AppStateProvider(),
-        // ),
+        // Provider((ref) => AppStateProvider()),
       ],
       observers: [CustomLogger()], // List<ProviderObserver?>
       child: const MVVMMyApp(),

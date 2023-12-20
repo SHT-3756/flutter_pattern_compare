@@ -2,11 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_state_compare/bloc/mvvm/presentation/result/result_screen.dart';
-import 'package:flutter_state_compare/riverpod/mvvm/presentation/app/app_global_state.dart';
-import 'package:flutter_state_compare/riverpod/mvvm/domian/riverpod/app_provider.dart';
-import 'package:flutter_state_compare/riverpod/mvvm/presentation/my/my_screen.dart';
-import 'package:flutter_state_compare/riverpod/mvvm/presentation/select/select_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_state_compare/riverpod/mvc/presentation/app/app_global_state.dart';
+import 'package:flutter_state_compare/riverpod/mvc/domian/riverpod/app_provider.dart';
+import 'package:flutter_state_compare/riverpod/mvc/presentation/my/my_screen.dart';
+import 'package:flutter_state_compare/riverpod/mvc/presentation/select/select_screen.dart';
 
 import '../home/home_screen.dart';
 import '../point/point_screen.dart';

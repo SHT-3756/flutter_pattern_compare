@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_state_compare/riverpod/mvc/domian/riverpod/app_provider.dart';
+
+class SelectScreen extends ConsumerWidget {
+  const SelectScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context,WidgetRef ref) {
+    final appState = ref.watch(appStateProvider);
+
+    return Container(
+      color: Colors.orange,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Center(
+            child: appState.isLogin ? const Text('로그인') : Text('비로그인이니 돌아가'),
+          )
+        ],
+      ),
+    );
+  }
+}
