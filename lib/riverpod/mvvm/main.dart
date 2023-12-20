@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_state_compare/riverpod/mvvm/app.dart';
+import 'package:flutter_state_compare/riverpod/mvvm/presentation/app/app_screen.dart';
 
 void main() {
   runApp(const ProviderScope(child: MVVMMyApp()));

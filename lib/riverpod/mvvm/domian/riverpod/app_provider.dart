@@ -1,6 +1,6 @@
 // 앱 전역 상태 관리
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_state_compare/riverpod/mvvm/domian/model/app_global_state.dart';
+import 'package:flutter_state_compare/riverpod/mvvm/presentation/app/app_global_state.dart';
 
 final appStateProvider = StateNotifierProvider<AppStateProvider, AppGlobalState>((ref) => AppStateProvider());
 
