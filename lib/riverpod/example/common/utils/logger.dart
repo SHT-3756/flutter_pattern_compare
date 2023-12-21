@@ -5,7 +5,6 @@ class CustomLogger extends ProviderObserver {
   // 업데이트
   @override
   void didUpdateProvider(ProviderBase<Object?> provider, Object? previousValue, Object? newValue, ProviderContainer container) {
-    print('dd');
     debugPrint('[$provider - Updated] => before : $previousValue, after : $newValue');
   }
 
