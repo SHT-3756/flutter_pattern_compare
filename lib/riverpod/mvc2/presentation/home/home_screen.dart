@@ -6,7 +6,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch();
+    // final state = ref.watch();
     return Scaffold(
       body: Container(),
     );

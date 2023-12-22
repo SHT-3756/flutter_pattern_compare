@@ -15,6 +15,7 @@ class ResultViewModel with ChangeNotifier {
   }
 
   Future<void> _loadResults() async {
+    print('ddd');
     _state = state.copyWith(isLoading: true);
 
     List<Result> results = await useCase.getResults();

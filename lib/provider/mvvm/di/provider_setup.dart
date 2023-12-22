@@ -21,6 +21,7 @@ Future getProviders() async {
 
   ResultViewModel resultsViewModel = ResultViewModel(useCase);
 
+
   return [
     ChangeNotifierProvider(create: (_) => resultsViewModel),
   ];

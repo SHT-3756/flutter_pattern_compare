@@ -5,12 +5,20 @@ import 'package:flutter_state_compare/riverpod/mvvm/presentation/app/app_global_
 final appStateProvider = StateNotifierProvider<AppStateProvider, AppGlobalState>((ref) => AppStateProvider());
 
 class AppStateProvider extends StateNotifier<AppGlobalState> {
-  AppStateProvider() : super(AppGlobalState(isLogin: false, currentIndex: 0));
-Provider dd = Provider((ref) => null);
+  AppStateProvider() : super(const AppGlobalState(isLogin: false, currentIndex: 0)) {
+
+    if(!state.isLogin) {
+      Future.delayed(const Duration(seconds: 10), () {
+        changeLoginState();
+      });
+    }
+  }
+
   void changeLoginState() {
     state = state.copyWith(
       isLogin: !state.isLogin,
     );
+
     print(state.isLogin);
   }
 
