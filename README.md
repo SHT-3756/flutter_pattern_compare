@@ -1,16 +1,79 @@
-# flutter_state_compare
+# 플러터 패턴 비교 공부중
+## MVC
+***빠른 개발, 기능 역할 직관적*** 
 
-A new Flutter project.
+***View 와 Model 의존성이 높다***
 
-## Getting Started
+m : 뷰에 필요한 데이터, 비즈니스 로직 집합, 데이터 변경,조작 정의
 
-This project is a starting point for a Flutter application.
+v :  UI 요소, 옵저버패턴으로 m 관찰
 
-A few resources to get you started if this is your first Flutter project:
+c : v,m 중재자 역할, 사용자 요청 처리, m 의 res 데이터 가공 후 v 반환
+1. 사용자 요청 → c → m 을 업데이트 
+2. c→ v 선택 (업데이트 된 m)
+3. v 업데이트된 m 로 UI 업데이트
+   
+## MVP
+***View 와 Controller 의존성 사라짐***
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+***View와 Presenter 의존성이 높다***
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. 사용자 요청 action → v
+2. v (데이터 요청) → p 
+3. p (데이터 요청) → m
+4. m (데이터 응답) → p 
+5. p (데이터 가공 후 응답) → v
+6. v 응답받은 데이터 UI 업데이트
+## MVVM
+***View 와 ViewModel 사이 의존성 사라짐***
+
+***ViewModel 설계 어려움***
+
+1. 사용자 요청 action → v
+2. v (action 전달) → vm 
+3. vm (데이터 요청) → m 
+4. m (데이터 응답) → vm
+5. vm 응답받은 데이터 가공후 저장
+6. v 는 vm 업데이트 감지해 UI 업데이트
+
+
+MVC 패턴은 Model, View, Controller의 세 가지 구성 요소로 이루어져 있습니다. Model은 데이터를 처리하고, View는 화면을 구성하고, Controller는 Model과 View를 연결합니다.
+
+MVC 패턴의 장점은 다음과 같습니다.
+
+- 간단하고 이해하기 쉽습니다.
+- 유지보수가 쉽습니다.
+
+MVC 패턴의 단점은 다음과 같습니다.
+
+- 뷰와 모델의 의존성이 높습니다.
+- 뷰와 모델이 서로 직접적으로 통신하기 때문에, 뷰나 모델의 변경이 다른 컴포넌트에 영향을 미칠 수 있습니다.
+
+**MVP**
+
+MVP 패턴은 MVC 패턴과 유사하지만, 프레젠터를 추가한 패턴입니다. 프레젠터는 뷰와 모델을 연결하고, 뷰의 요청을 모델에 전달하고, 모델의 응답을 뷰에 전달합니다.
+
+MVP 패턴의 장점은 다음과 같습니다.
+
+- MVC 패턴의 장점을 그대로 가지고 있습니다.
+- 뷰와 모델의 의존성을 낮출 수 있습니다.
+
+MVP 패턴의 단점은 다음과 같습니다.
+
+- MVC 패턴보다 복잡합니다.
+- 프레젠터가 추가되어 유지보수가 어려울 수 있습니다.
+
+**MVVM**
+
+MVVM 패턴은 MVC 패턴과 MVP 패턴의 장점을 결합한 패턴입니다. MVVM 패턴에서는 뷰와 모델의 의존성을 낮추기 위해 뷰모델을 사용합니다. 뷰모델은 뷰의 UI 상태를 관리하고, 모델의 데이터를 뷰에 전달합니다.
+
+MVVM 패턴의 장점은 다음과 같습니다.
+
+- MVC 패턴과 MVP 패턴의 장점을 그대로 가지고 있습니다.
+- 뷰와 모델의 의존성을 낮출 수 있습니다.
+
+MVVM 패턴의 단점은 다음과 같습니다.
+
+- MVC 패턴과 MVP 패턴보다 복잡합니다.
+- 뷰모델이 추가되어 유지보수가 어려울 수 있습니다.
+
