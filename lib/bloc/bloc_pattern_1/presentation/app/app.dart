@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_state_compare/bloc/bloc_pattern_1/bloc/login_bloc.dart';
 import 'package:flutter_state_compare/bloc/bloc_pattern_1/bloc/product_bloc.dart';
 
-import 'components/app_components.dart';
+import '../../components/app_components.dart';
+import 'app_widget.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class _DefaultItems extends StatelessWidget {
         const SizedBox(height: 20),
         if (state is LoadingProductState) loadingComponent(),
         if (state is LoadedProductState)
-          ProductsWidget(
+          productsWidget(
             items: List.generate(
               state.defaultItems?.length ?? 0,
               (index) => state.defaultItems![index],
@@ -73,7 +74,7 @@ class _LoginedItem extends StatelessWidget {
         if (state is LoadingProductState) loadingComponent(),
         if (state is LoadedProductState && state.payItems == null) lockWidget(),
         if (state is LoadedProductState && state.payItems != null)
-          ProductsWidget(
+          productsWidget(
             items: List.generate(
               state.payItems?.length ?? 0,
               (index) => state.payItems![index],
@@ -84,29 +85,5 @@ class _LoginedItem extends StatelessWidget {
   }
 }
 
-class ProductsWidget extends StatelessWidget {
-  final List<String> items;
 
-  const ProductsWidget({Key? key, required this.items}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: List.generate(
-          items.length,
-          (index) => Container(
-            margin: const EdgeInsets.symmetric(horizontal: 5),
-            width: 100,
-            height: 80,
-            color: Colors.grey.withOpacity(0.5),
-            child: Center(child: Text('item [${items[index]}]')),
-          ),
-        ),
-      ),
-    );
-  }
-}
 
