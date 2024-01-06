@@ -51,6 +51,7 @@ dependencies:
   bloc_concurrency: ^0.2.3
   scratcher: ^2.5.0
   confetti: ^0.7.0
+  neopop: ^1.0.2
 
 dev_dependencies:
   flutter_test:
